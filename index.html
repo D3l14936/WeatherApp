@@ -9,46 +9,49 @@
       href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
       rel="stylesheet"
     />
+    
     <link rel="stylesheet" href="src/style.css" />
     <title>Weather App</title>
 </head>
 <body>
-  <div class="weather-app">
-    <header>
-      <form class="search-form">
-        <input
-          type="search"
-          placeholder="Enter a city.."
-          required
-          class="search-form-input"
-        />
-        <input type="submit" value="Search" class="search-form-button" />
-      </form>
-    </header>
-    <main>
-      <div class="weather-app-data">
-        <div>
-          <h1 class="weather-app-city">Oslo</h1>
-          <p class="weather-app-details">
-            Tuesday 14:49, scattered clouds
-            <br />
-            Humidity: <strong>66%</strong>, Wind: <strong>3.13km/h</strong>
-          </p>
+    <div class="weather-app">
+      <header>
+        <form class="search-form" id="search-form">
+          <input
+            type="search"
+            placeholder="Enter a city.."
+            required
+            id="search-form-input"
+            class="search-form-input"
+          />
+          <input type="submit" value="Search" class="search-form-button" />
+        </form>
+      </header>
+      <main>
+        <div class="weather-app-data">
+          <div>
+            <h1 class="weather-app-city" id="city">Oslo</h1>
+            <p class="weather-app-details">
+              Tuesday 14:49, scattered clouds
+              <br />
+              Humidity: <strong>66%</strong>, Wind: <strong>3.13km/h</strong>
+            </p>
+          </div>
+          <div class="weather-app-temperature-container">
+            <div class="weather-app-icon">🌤️</div>
+            <div class="weather-app-temperature" id="temperature">9</div>
+            <div class="weatehr-app-unit">°C</div>
+          </div>
         </div>
-        <div class="weather-app-temperature-container">
-          <div class="weather-app-icon">🌤️</div>
-          <div class="weather-app-temperature">9</div>
-          <div class="weatehr-app-unit">°C</div>
-        </div>
-      </div>
-    </main>
+      </main>
     <footer>
-      This project was coded by
-      <a href="https://github.com/D3l14936/" target="_blank"> Délia Lóthyová</a
-      >, and is
+      This project was coded by 
+      <a href="https://github.com/D3l14936/" target="_blank">Délia Lóthyová</a
+      >, and is hosted on 
       <a href="https://ldsweatherapp.netlify.app/" target="_blank"
-        >hosted on Netlify</a
+        >Netlify</a
       >
     </footer>
+    <script src="src/index.js"></script>
   </body>
 </html>
