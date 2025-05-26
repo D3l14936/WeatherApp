@@ -1,42 +1,39 @@
-function refreshWeather(response) {
-  let temperatureElement = document.querySelector("#temperature");
-  let temperature = response.data.temperature.current;
-  let cityElement = document.querySelector("#city");
-
-  cityElement.innerHTML = response.data.city;
-  temperatureElement.innerHTML = Math.round(temperature);
-}
-
-function searchCity(city) {
-  let apiKey = "b2a5adcct04b33178913oc335f405433";
-  let apiUrl = `https://api.shecodes.io/weather/v1/current?query=${city}&key=${apiKey}`;
-  axios.get(apiUrl).then(refreshWeather);
-}
-
-/* function handleSearchSubmit(event) {
-  event.preventDefault();
-  let searchInput = document.querySelector("#search-form-input");
-
-  searchCity(searchInput.value);
-}
-
-let searchFormElement = document.querySelector("#search-form");
-searchFormElement.addEventListener("submit", handleSearchSubmit);
-
-searchCity("Oslo");
-*/
 document.addEventListener("DOMContentLoaded", function () {
-  function search(event) {
-    event.preventDefault();
-    let searchInput = document.querySelector("#search-form-input");
-    let cityElement = document.querySelector("#city");
+  let apiKey = "f56ddo443f56b76637t0be5d36d0503a";
+  let form = document.querySelector("#search-form");
+  let cityElement = document.querySelector("#city");
+  let tempElement = document.querySelector("#temperature");
 
-    let newCity = searchInput.value.trim();
-    if (newCity) {
-      cityElement.innerHTML = newCity;
-    }
+  function displayWeather(response) {
+    let temperature = Math.round(response.data.temperature.current);
+    let cityName = response.data.city;
+
+    cityElement.textContent = cityName;
+    tempElement.textContent = temperature;
   }
 
-  let searchForm = document.querySelector("#search-form");
-  searchForm.addEventListener("submit", search);
+  function searchCity(city) {
+    let apiUrl = `https://api.shecodes.io/weather/v1/current?query=${city}&key=${apiKey}`;
+    axios
+      .get(apiUrl)
+      .then(displayWeather)
+      .catch(function (error) {
+        alert("City not found 😢");
+        console.error(error);
+      });
+  }
+
+  form.addEventListener("submit", function (event) {
+    event.preventDefault();
+
+    let input = document.querySelector("#search-form-input");
+    let city = input.value.trim();
+
+    if (city) {
+      searchCity(city);
+    }
+  });
+
+  // default city when opening app
+  searchCity("Oslo");
 });
