@@ -13,7 +13,7 @@ function searchCity(city) {
   axios.get(apiUrl).then(refreshWeather);
 }
 
-function handleSearchSubmit(event) {
+/* function handleSearchSubmit(event) {
   event.preventDefault();
   let searchInput = document.querySelector("#search-form-input");
 
@@ -24,3 +24,19 @@ let searchFormElement = document.querySelector("#search-form");
 searchFormElement.addEventListener("submit", handleSearchSubmit);
 
 searchCity("Oslo");
+*/
+document.addEventListener("DOMContentLoaded", function () {
+  function search(event) {
+    event.preventDefault();
+    let searchInput = document.querySelector("#search-form-input");
+    let cityElement = document.querySelector("#city");
+
+    let newCity = searchInput.value.trim();
+    if (newCity) {
+      cityElement.innerHTML = newCity;
+    }
+  }
+
+  let searchForm = document.querySelector("#search-form");
+  searchForm.addEventListener("submit", search);
+});
