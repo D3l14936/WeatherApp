@@ -4,15 +4,24 @@ document.addEventListener("DOMContentLoaded", function () {
   let cityElement = document.querySelector("#city");
   let tempElement = document.querySelector("#temperature");
   let conditionElement = document.querySelector("#current-condition");
+  let humidityElement = document.querySelector("#humidity");
+  let windElement = document.querySelector("#wind");
+  let iconElement = document.querySelector("#icon");
 
   function displayWeather(response) {
     let temperature = Math.round(response.data.temperature.current);
     let cityName = response.data.city;
     let condition = response.data.condition.description;
+    let humidity = response.data.temperature.humidity;
+    let wind = response.data.wind.speed;
+    let icon = `<img src="${response.data.condition.icon_url}"/>`;
 
-    conditionElement.textContent = condition;
     cityElement.textContent = cityName;
     tempElement.textContent = temperature;
+    conditionElement.textContent = condition;
+    humidityElement.textContent = humidity;
+    windElement.textContent = wind;
+    iconElement.innerHTML = icon;
   }
   // Search city API
   function searchCity(city) {
