@@ -3,11 +3,14 @@ document.addEventListener("DOMContentLoaded", function () {
   let form = document.querySelector("#search-form");
   let cityElement = document.querySelector("#city");
   let tempElement = document.querySelector("#temperature");
+  let conditionElement = document.querySelector("#current-condition");
 
   function displayWeather(response) {
     let temperature = Math.round(response.data.temperature.current);
     let cityName = response.data.city;
+    let condition = response.data.condition.description;
 
+    conditionElement.textContent = condition;
     cityElement.textContent = cityName;
     tempElement.textContent = temperature;
   }
