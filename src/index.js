@@ -11,7 +11,7 @@ document.addEventListener("DOMContentLoaded", function () {
     cityElement.textContent = cityName;
     tempElement.textContent = temperature;
   }
-
+  // Search city API
   function searchCity(city) {
     let apiUrl = `https://api.shecodes.io/weather/v1/current?query=${city}&key=${apiKey}`;
     axios
@@ -22,7 +22,7 @@ document.addEventListener("DOMContentLoaded", function () {
         console.error(error);
       });
   }
-
+  // Update display city
   form.addEventListener("submit", function (event) {
     event.preventDefault();
 
@@ -36,4 +36,30 @@ document.addEventListener("DOMContentLoaded", function () {
 
   // default city when opening app
   searchCity("Oslo");
+
+  //update current date and time below the city name
+  let now = new Date();
+  let timeStamp = document.querySelector("#current-time");
+  let hours = now.getHours();
+  let minutes = now.getMinutes();
+  let days = [
+    "Sunday",
+    "Monday",
+    "Tuesday",
+    "Wednesday",
+    "Thursday",
+    "Friday",
+    "Saturday",
+  ];
+
+  if (minutes < 10) {
+    minutes = `0${minutes}`;
+  }
+
+  if (hours < 10) {
+    hours = `0${hours}`;
+  }
+
+  let day = days[now.getDay()];
+  timeStamp.innerHTML = `${day} ${hours}:${minutes}`;
 });
