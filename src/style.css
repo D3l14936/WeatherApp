@@ -1,5 +1,5 @@
 body {
-  background-color: #f4f0ed;
+  background-color: #f9f5f3;
   font-family: "Roboto", sans-serif;
 }
 
@@ -11,7 +11,7 @@ a {
   background: linear-gradient(#e6cbad, #ede1d2, #aedbcf);
   max-width: 600px;
   margin: 45px auto;
-  box-shadow: 0 30px 50px rgba(65, 50, 100, 0.08);
+  box-shadow: 0 30px 50px rgba(100, 50, 52, 0.2);
   border-radius: 16px;
   padding: 30px;
   color: #3e1f47;
@@ -116,7 +116,7 @@ main {
 }
 
 .forecast-icon {
-  font-size: 38px;
+  width: 100%;
 }
 
 .forecast-temperature {
