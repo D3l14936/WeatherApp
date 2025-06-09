@@ -34,6 +34,7 @@ document.addEventListener("DOMContentLoaded", function () {
         console.error(error);
       });
   }
+
   // Update display city
   form.addEventListener("submit", function (event) {
     event.preventDefault();
@@ -45,9 +46,6 @@ document.addEventListener("DOMContentLoaded", function () {
       searchCity(city);
     }
   });
-
-  // default city when opening app
-  searchCity("Oslo");
 
   //update current date and time below the city name
   let now = new Date();
@@ -74,4 +72,32 @@ document.addEventListener("DOMContentLoaded", function () {
 
   let day = days[now.getDay()];
   timeStamp.innerHTML = `${day} ${hours}:${minutes}`;
+
+  //insert forecast into html
+  function displayForecast() {
+    let days = ["Tue", "Wed", "Thu", "Fri", "Sat"];
+    let forecastHtml = "";
+
+    days.forEach(function (day) {
+      forecastHtml =
+        forecastHtml +
+        `
+        <div class="forecast-day">
+            <div class="forecast-day-name">Tue</div>
+            <div class="forecast-icon">🌤️</div>
+            <div class="forecast-temperature">
+              <div class="forecast-temp-day">9°</div>
+              <div class="forecast-temp-night">5°</div>
+            </div>
+          </div>
+     `;
+    });
+
+    let forecastElement = document.querySelector("#forecast");
+    forecastElement.innerHTML = forecastHtml;
+  }
+
+  // default city when opening app
+  searchCity("Oslo");
+  displayForecast();
 });
