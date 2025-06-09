@@ -22,6 +22,8 @@ document.addEventListener("DOMContentLoaded", function () {
     humidityElement.textContent = humidity;
     windElement.textContent = wind;
     iconElement.innerHTML = icon;
+
+    getForecast(response.data.city);
   }
   // Search city API
   function searchCity(city) {
@@ -73,8 +75,22 @@ document.addEventListener("DOMContentLoaded", function () {
   let day = days[now.getDay()];
   timeStamp.innerHTML = `${day} ${hours}:${minutes}`;
 
+  //update forecast with SheCodes API data
+  function getForecast(city) {
+    let apiUrl = `https://api.shecodes.io/weather/v1/forecast?query=${city}&key=${apiKey}`;
+    axios
+      .get(apiUrl)
+      .then(displayForecast)
+      .catch(function (error) {
+        alert("City not found 😢");
+        console.error(error);
+      });
+  }
+
   //insert forecast into html
-  function displayForecast() {
+  function displayForecast(response) {
+    console.log(response.data);
+
     let days = ["Tue", "Wed", "Thu", "Fri", "Sat"];
     let forecastHtml = "";
 
@@ -83,7 +99,7 @@ document.addEventListener("DOMContentLoaded", function () {
         forecastHtml +
         `
         <div class="forecast-day">
-            <div class="forecast-day-name">Tue</div>
+            <div class="forecast-day-name">${day}</div>
             <div class="forecast-icon">🌤️</div>
             <div class="forecast-temperature">
               <div class="forecast-temp-day">9°</div>
@@ -99,5 +115,4 @@ document.addEventListener("DOMContentLoaded", function () {
 
   // default city when opening app
   searchCity("Oslo");
-  displayForecast();
 });
